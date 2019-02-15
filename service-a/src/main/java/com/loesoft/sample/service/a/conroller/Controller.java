@@ -1,12 +1,10 @@
 package com.loesoft.sample.service.a.conroller;
 
 import com.loesoft.sample.service.a.openfeign.ServiceBClient;
-import com.loesoft.sample.service.a.openfeign.ServiceCClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
@@ -23,7 +21,6 @@ import java.util.Map;
 public class Controller {
 
     private final ServiceBClient serviceBClient;
-    private final ServiceCClient serviceCClient;
 
     @RequestMapping(method = RequestMethod.GET, path = "/insecure-a-to-insecure-b")
     public ResponseEntity<Map<String, Object>> insecureAToInsecureB() {
@@ -49,26 +46,26 @@ public class Controller {
         return new ResponseEntity<>(data,HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.GET, path = "/secure-a-to-insecure-c")
+    @RequestMapping(method = RequestMethod.GET, path = "/secure-a-to-insecure-b")
     public ResponseEntity<Map<String, Object>> secureAToInsecureC() {
 
         Map<String, Object> data = new HashMap<>();
         data.put("service", "A");
         data.put("endpoint", "secure");
         data.put("principal", this.getPrincipal());
-        data.put("called", this.serviceCClient.insecure());
+        data.put("called", this.serviceBClient.insecure());
 
         return new ResponseEntity<>(data, HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.GET, path = "/secure-a-to-secure-c")
+    @RequestMapping(method = RequestMethod.GET, path = "/secure-a-to-secure-b")
     public ResponseEntity<Map<String, Object>> secureAToSecureC() {
 
         Map<String, Object> data = new HashMap<>();
         data.put("service", "A");
         data.put("endpoint", "secure");
         data.put("principal", this.getPrincipal());
-        data.put("called", this.serviceCClient.secure());
+        data.put("called", this.serviceBClient.secure());
 
         return new ResponseEntity<>(data, HttpStatus.OK);
     }
