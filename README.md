@@ -19,14 +19,14 @@ curl -X POST \
 https://dev-383458.oktapreview.com/oauth2/ausjas48b0QEozCJL0h7/v1/token
 ```
 
-#Endpoints
+# Endpoints
 
 All endpoints return information about the call made. this includes:
 * the name of the service called
 * the name of the endpoint called
 * the name of the principal in the security context
 
-##Service A
+## Service A
 
 Service A endpoints additionally embed in their response the response received from the call to the service B endpoints.
 
@@ -46,9 +46,9 @@ This secure endpoint of service A calls the insecure endpoint of service B to ge
 
 This secure endpoint of service A calls the secured endpoint of service B to generate its response
 
-##Service B
+## Service B
 
-http://localhost:8081/insecure
+**http://localhost:8081/insecure**
 
 An insecured endpoint that returns the content described above
 
@@ -60,7 +60,7 @@ An insecured endpoint that returns the content described above
 }
 ```
 
-http://localhost:8081/secure
+**http://localhost:8081/secure**
 
 An secured endpoint that returns the content described above
 
@@ -72,7 +72,7 @@ An secured endpoint that returns the content described above
 }
 ```
 
-#Setup
+# Testing
 
 Checkout the project and complile the source code
 
