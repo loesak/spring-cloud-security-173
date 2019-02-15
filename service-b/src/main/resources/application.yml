@@ -1,0 +1,12 @@
+---
+server:
+  port: 8081
+
+spring:
+  application:
+    name: service-b
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://dev-383458.oktapreview.com/oauth2/ausjas48b0QEozCJL0h7

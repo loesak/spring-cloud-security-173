@@ -1,0 +1,33 @@
+---
+server:
+  port: 8080
+
+spring:
+  application:
+    name: service-a
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://dev-383458.oktapreview.com/oauth2/ausjas48b0QEozCJL0h7
+      client:
+        provider:
+          my-okta:
+            authorization-uri: https://dev-383458.oktapreview.com/oauth2/ausjas48b0QEozCJL0h7/v1/authorize
+            token-uri: https://dev-383458.oktapreview.com/oauth2/ausjas48b0QEozCJL0h7/v1/token
+            user-info-uri: https://dev-383458.oktapreview.com/oauth2/ausjas48b0QEozCJL0h7/v1/userinfo
+            user-name-attribute: sub
+            jwk-set-uri: https://dev-383458.oktapreview.com/oauth2/ausjas48b0QEozCJL0h7/v1/keys
+        registration:
+          service-b: # client registration for this service to communicate with service b
+            provider: my-okta
+            client-id: 0oajarrlopJGxT4x70h7
+            client-secret: dsUazH0v6mrwfn4XeLY6AOReiTMK20Aqya1btWC_
+            authorization-grant-type: client_credentials
+            scopes: doBthings
+          service-c: # client registration for this service to communicate with service c
+            provider: my-okta
+            client-id: 0oajarrlopJGxT4x70h7
+            client-secret: dsUazH0v6mrwfn4XeLY6AOReiTMK20Aqya1btWC_
+            authorization-grant-type: client_credentials
+            scopes: doCthings
